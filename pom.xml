@@ -14,6 +14,7 @@
     <description>Demo project for Spring Boot</description>
 
     <modules>
+        <module>spring-boot-webmvc-jsp</module>
         <module>spring-boot-webmvc-theamleaf</module>
     </modules>
 
