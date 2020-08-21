@@ -1,4 +1,4 @@
-package com.lqh.priactice.springboot.mvc.jsp;
+package com.lqh.priactice.springboot.redis.priactice.springboot.mvc.jsp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

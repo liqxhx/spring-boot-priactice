@@ -9,9 +9,9 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <parent>
-        <groupId>${project.groupId}</groupId>
+        <groupId>com.lqh.priactice</groupId>
+        <version>0.0.1-SNAPSHOT</version>
         <artifactId>spring-boot-priactice</artifactId>
-        <version>${project.version}</version>
     </parent>
 
     <dependencies>

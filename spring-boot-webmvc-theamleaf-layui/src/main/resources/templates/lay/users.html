@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:include="common/common :: jscss-noloading">
+    <title>表格</title>
+</head>
+<body>
+<table id="userTable" lay-filter="userTable"></table>
+
+<script type="text/html" id="userTableToolBar">
+<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript" th:inline="javascript">
+    // layui.extend({
+    //     users: '/js/lay/users' // {/}的意思即代表采用自有路径，即不跟随 base 路径
+    // }).use('users', function(users){
+    //     users.ping("test");
+    // });
+
+
+    layui.config({
+        base: '/static/js/' //假设这是你存放拓展模块的根目录
+    }).extend({ //设定模块别名
+        users: 'lay/users' //相对于上述 base 目录的子目录
+    }).use('users', function(users){
+        users.ping("test2");
+    });
+</script>
+</body>
+</html>

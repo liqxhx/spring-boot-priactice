@@ -1,4 +1,4 @@
-package com.lqh.priactice.springboot.mvc.jsp.config;
+package com.lqh.priactice.springboot.redis.priactice.springboot.mvc.jsp.config;
 
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;

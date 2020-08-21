@@ -1,4 +1,4 @@
-package com.lqh.priactice.springboot.mongo.model;
+package com.lqh.priactice.springboot.redis.priactice.springboot.mongo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

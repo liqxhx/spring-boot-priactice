@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<th:block th:fragment="loginFragment">
+    <div class="layui-container">
+        <form class="layui-form" action="">
+                <!-- 姓名
+                ==================================================================================
+                -->
+                <div class="layui-row layui-form-item">
+                    <label class="layui-col-md-offset3 layui-form-label layui-required">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="loginUserName" name="userName" required lay-verify="required" placeholder="请输入姓名"
+                               autocomplete="off" class="layui-input" lay-verType="msg">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">用户姓名，必输，长度不能超过100</div>
+                </div>
+
+                <!-- 密码
+                ==================================================================================
+                -->
+                <div class="layui-row layui-form-item">
+                    <label class="layui-col-md-offset3 layui-form-label layui-required">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" id="loginPassword" name="password" required lay-verify="required"
+                               placeholder="请输入密码"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">登录密码，必输，长度不能超过30</div>
+                </div>
+
+                <!-- 登录
+                ==================================================================================
+                -->
+                <div class="layui-row layui-form-item">
+                    <div class="layui-col-md-offset3">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:include="common/common :: jscss-noloading">
+    <title>表格</title>
+</head>
+<body>
+<header></header>
+<nav class="layui-row layui-bg-black">
+        <div class="layui-col-md2" style="heigth: 60px; line-height: 60px; text-indent: 20px; font-size: 22px">logo</div>
+
+        <div class="layui-col-md2 layui-col-md-offset8">
+            <ul class="layui-nav" lay-filter="">
+                <img style="width: 30px; height: 30px; margin-right: 5px;" src="static/images/defface2.jpg">
+                <li class="layui-nav-item">
+                    名称
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-set"></i>设置</a>
+                    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                        <dd><a href="">移动模块</a></dd>
+                        <dd><a href="">后台模版</a></dd>
+                        <dd><a href="">电商平台</a></dd>
+                    </dl>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="height: calc(100vh - 60px); display: flex;">
+    <aside class="layui-bg-black">
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">默认展开</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">选项1</a></dd>
+                    <dd><a href="javascript:;">选项2</a></dd>
+                    <dd><a href="">跳转</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">解决方案</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">移动模块</a></dd>
+                    <dd><a href="">后台模版</a></dd>
+                    <dd><a href="">电商平台</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">产品</a></li>
+            <li class="layui-nav-item"><a href="">大数据</a></li>
+        </ul>
+    </aside>
+
+    <div style="flex: 1; padding: 15px;">
+        <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">国际新闻</a>
+            <a href="">亚太地区</a>
+            <a><cite>正文</cite></a>
+        </span>
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">查询</h2>
+                <div class="layui-colla-content layui-show">
+                    <form class="layui-form" lay-filter="query-filter">
+                        <div class="layui-form-item">
+                            <lable class="layui-form-label">ID</lable>
+                            <div class="layui-input-inline">
+                                <input type="text" name="userId" required class="layui-input">
+                            </div>
+
+                            <lable class="layui-form-label">姓名</lable>
+                            <div class="layui-input-inline">
+                                <input type="text" name="userName" required class="layui-input">
+                            </div>
+
+                            <div class="layui-input-inline">
+                                <button class="layui-btn" lay-submit title="提交"><i class="layui-icon layui-icon-search"></i></button>
+                                <button type="reset" class="layui-btn layui-btn-primary" title="重置" ><i class="layui-icon layui-icon-refresh-1"></i> </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;" class="layui-btn-group ">
+            <button type="button" class="layui-btn" id="addItemBtn">
+                <i class="layui-icon">&#xe608;</i> 添加
+            </button>
+            <button type="button" class="layui-btn" id="deleteSeletedItemsBtn">
+                <i class="layui-icon">&#xe640;</i> 删除
+            </button>
+
+        </div>
+
+        <table class="layui-table" lay-even>
+    <!--        <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+                <col>
+            </colgroup>-->
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>密码</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="trContainer">
+
+            </tbody>
+        </table>
+
+        <div style="display: flex; justify-content: center;">
+            <div id="pager"></div>
+        </div>
+
+        <script id="trTPL" type="text/html">
+            {{#  layui.each(d, function(index, item){ }}
+            <tr>
+                <td>{{index+1}}</td>
+                <td>{{item.userId}}</td>
+                <td>{{item.userName}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.password}}</td>
+                <td>{{item.gender}}</td>
+                <td>
+                    <button type="button" data-id="{{item.userId}}" class="layui-btn layui-btn-sm detailItem"><i class="layui-icon layui-icon-read"></i>详情</button>
+                    <button type="button" data-id="{{item.userId}}" class="layui-btn layui-btn-sm layui-btn-warm editItem"><i class="layui-icon layui-icon-edit"></i>修改</button>
+                    <button type="button" data-id="{{item.userId}}" class="layui-btn layui-btn-sm layui-btn-danger deleteItem"><i class="layui-icon layui-icon-delete"></i>删除</button>
+                </td>
+            </tr>
+            {{#  }); }}
+        </script>
+
+        <script id="detailTPL" type="text/html">
+            <form class="layui-form" style="padding: 20px;" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="line-height: 100px;">头像</label>
+                    <div class="layui-input-inline">
+                        {{ d.iconFace}}
+                        <img style="width: 100px; height: 100px;" src="static/images/{{(d.iconFace == ''||d.iconFace == null ) ? 'defface.jpeg': d.iconFace}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">ID</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="userId" required readonly class="layui-input" value="{{d.userId}}">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">用户系统id，系统生成，不可编辑</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="userName" required lay-verify="required" class="layui-input" value="{{d.userName}}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">年龄</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="age" required lay-verify="required" class="layui-input" value="{{d.age}}">
+                    </div>
+                </div>
+
+            </form>
+        </script>
+
+        <div id="detailContainer" style="display: none;">
+
+        </div>
+
+        <div id="addItemContainer" style="display: none;">
+            <form class="layui-form" style="padding: 20px;" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="line-height: 100px;">头像</label>
+                    <div class="layui-input-inline">
+                        <img style="width: 100px; height: 100px;cursor:hand;" class="upload" src="" id="test1">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="userName" required lay-verify="required" class="layui-input" placeholder="请输入姓名">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">年龄</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="age" required lay-verify="required" class="layui-input" placeholder="请输入年龄">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+<iframe scrolling="no" src="https://tianqiapi.com/api.php?style=ya&skin=pitaya" frameborder="0" width="320" height="200" allowtransparency="true"></iframe>
+
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+
+    layui.config({
+        base: '/static/js/' //假设这是你存放拓展模块的根目录
+    }).extend({ //设定模块别名
+        main: 'lay/main' //相对于上述 base 目录的子目录
+    }).use(['main']);
+</script>
+</html>

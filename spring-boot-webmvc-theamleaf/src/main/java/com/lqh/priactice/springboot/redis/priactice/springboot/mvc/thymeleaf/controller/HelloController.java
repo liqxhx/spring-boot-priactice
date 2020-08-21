@@ -1,4 +1,4 @@
-package com.lqh.priactice.springboot.mvc.thymeleaf.controller;
+package com.lqh.priactice.springboot.redis.priactice.springboot.mvc.thymeleaf.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>${project.groupId}</groupId>
+        <groupId>com.lqh.priactice</groupId>
         <artifactId>spring-boot-priactice</artifactId>
-        <version>${project.version}</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.lqh.priactice</groupId>
@@ -20,14 +20,14 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- 添加jstl标签库依赖模块
+        <!-- 添加jstl标签库依赖模块 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
-        -->
 
-        <!-- tomcat
+
+        <!-- tomcat-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -38,7 +38,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
--->
+
         <!--JspServlet-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>

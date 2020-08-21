@@ -1,4 +1,4 @@
-package com.lqh.priactice.springboot.springsession.pubsub;
+package com.lqh.priactice.springboot.redis.priactice.springboot.springsession.pubsub;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.Message;
