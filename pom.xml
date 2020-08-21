@@ -16,12 +16,20 @@
     <modules>
         <module>spring-boot-webmvc-jsp</module>
         <module>spring-boot-webmvc-theamleaf</module>
+        <module>spring-boot-webmvc-theamleaf-layui</module>
+        <module>spring-boot-mongo</module>
+        <module>spring-boot-dubbo</module>
+        <module>spring-boot-session</module>
+        <module>spring-boot-security-web</module>
+        <module>spring-boot-webflux</module>
+        <module>spring-boot-redis</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <wiremock.version>2.5.1</wiremock.version>
     </properties>
 
     <parent>

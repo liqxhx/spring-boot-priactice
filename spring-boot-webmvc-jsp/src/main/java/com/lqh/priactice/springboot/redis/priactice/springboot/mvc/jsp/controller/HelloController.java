@@ -18,6 +18,12 @@ import java.time.format.DateTimeFormatter;
  */
 @Controller
 public class HelloController {
+    /**
+     * curl -H "Content-Type:text/html;charset=utf-8" http://localhost:8080
+     * @param value
+     * @param model
+     * @return
+     */
     @RequestMapping("")
     public String index(@RequestParam(required = false,defaultValue = "0") int value, Model model) {
         model.addAttribute("time", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
