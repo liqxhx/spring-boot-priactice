@@ -82,6 +82,19 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.7.0</version>
         </dependency>
+
+        <!-- 图片验证码 -->
+        <dependency>
+            <groupId>com.google.code.kaptcha</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+        <!-- spring session-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

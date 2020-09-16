@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -18,13 +19,14 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 @Slf4j
 @Component
-public class WebMvcConfiguration /*extends WebMvcConfigurationSupport */ implements WebMvcConfigurer {
+public class MyWebMvcConfiguration /*extends WebMvcConfigurationSupport */ implements WebMvcConfigurer {
     /**
      * 异步配置
      * @param configurer
      */
     @Override
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         //获取到服务器的cpu内核
         int i = Runtime.getRuntime().availableProcessors();
@@ -37,10 +39,22 @@ public class WebMvcConfiguration /*extends WebMvcConfigurationSupport */ impleme
         //线程空闲时间
         executor.setKeepAliveSeconds(1000);
         //线程前缀名称
-        executor.setThreadNamePrefix("task-async");
+        executor.setThreadNamePrefix("task-async-");
         //配置拒绝策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
         executor.initialize();
         configurer.setTaskExecutor(executor);
     }
+
+    /**
+     * 静态文件
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
 }

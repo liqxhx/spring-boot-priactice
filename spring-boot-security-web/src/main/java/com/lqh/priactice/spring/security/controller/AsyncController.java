@@ -1,5 +1,7 @@
 package com.lqh.priactice.spring.security.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,10 +25,12 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 @RestController
 @Slf4j
+@Api(tags = "异步处理控制器")
 public class AsyncController {
     private static final LinkedBlockingQueue<DeferredResult<String>> queue = new LinkedBlockingQueue();
 
-    @GetMapping("/ping")
+    @GetMapping("/async")
+    @ApiOperation("just ping")
     public String ping() throws InterruptedException {
         log.debug("main start");
         Thread.sleep(1000);
@@ -38,7 +42,7 @@ public class AsyncController {
      * Callable实现异步请求
      * @return
      */
-    @GetMapping("/ping/callable")
+    @GetMapping("/async/callable")
     public Callable<String> callable() {
         log.debug("main start");
         Callable<String> ret = () -> {
@@ -51,7 +55,7 @@ public class AsyncController {
         return ret;
     }
 
-    @GetMapping("/ping/defered")
+    @GetMapping("/async/defered")
     public DeferredResult<String> deferedResult() {
         DeferredResult<String> result = new DeferredResult<>(50L);
         queue.offer(result);

@@ -28,4 +28,8 @@ public class UserService {
         log.debug("#save#user:{}", user);
         return userRepository.save(user);
     }
+
+    public User findById(Long id) {
+        return userRepository.findById(id).get();
+    }
 }

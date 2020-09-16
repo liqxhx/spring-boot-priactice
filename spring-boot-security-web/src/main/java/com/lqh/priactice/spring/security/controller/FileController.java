@@ -1,6 +1,6 @@
 package com.lqh.priactice.spring.security.controller;
 
-import com.lqh.priactice.spring.security.model.dto.FileInfo;
+import com.lqh.priactice.spring.security.dto.FileInfo;
 import org.apache.commons.io.IOUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

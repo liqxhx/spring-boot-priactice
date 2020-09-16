@@ -1,4 +1,4 @@
-package com.lqh.priactice.spring.security.model.dto;
+package com.lqh.priactice.spring.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
