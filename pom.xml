@@ -23,6 +23,7 @@
         <module>spring-boot-security-web</module>
         <module>spring-boot-webflux</module>
         <module>spring-boot-redis</module>
+        <module>spring-boot-task</module>
     </modules>
 
     <properties>
