@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:include="common/common :: jscss-noloading">
+    <title>表格</title>
+</head>
+<body>
+<header></header>
+<nav class="layui-row layui-bg-black">
+        <div class="layui-col-md2" style="heigth: 60px; line-height: 60px; text-indent: 20px; font-size: 22px">logo</div>
+
+        <div class="layui-col-md2 layui-col-md-offset8">
+            <ul class="layui-nav" lay-filter="">
+                <img style="width: 30px; height: 30px; margin-right: 5px;" src="static/images/defface2.jpg">
+                <li class="layui-nav-item">
+                    名称
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-set"></i>设置</a>
+                    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                        <dd><a href="">移动模块</a></dd>
+                        <dd><a href="">后台模版</a></dd>
+                        <dd><a href="">电商平台</a></dd>
+                    </dl>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="height: calc(100vh - 60px); display: flex;">
+    <!-- menu -->
+    <aside class="layui-bg-black">
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="template/common/home.html" target="main">主页</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">解决方案</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">移动模块</a></dd>
+                    <dd><a href="javascript:;">后台模版</a></dd>
+                    <dd><a href="javascript:;">电商平台</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="user/users.html" target="main">用户管理</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">大数据</a></li>
+        </ul>
+    </aside>
+
+    <div style="flex: 1; padding: 15px;height: 100%;display: flex; box-sizing: border-box">
+        <iframe frameborder="no" name="main" src="user/users.html" style="flex:1"></iframe>
+    </div>
+
+
+</div>
+<!--<iframe scrolling="no" src="https://tianqiapi.com/api.php?style=ya&skin=pitaya" frameborder="0" width="320" height="200" allowtransparency="true"></iframe>-->
+
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+
+    layui.config({
+        base: '/static/js/' //假设这是你存放拓展模块的根目录
+    }).extend({ //设定模块别名
+        main: 'lay/main' //相对于上述 base 目录的子目录
+    }).use(['main']);
+</script>
+</html>

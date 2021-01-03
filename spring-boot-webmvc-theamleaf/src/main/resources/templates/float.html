@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动产生的问题</title>
+    <style>
+        .container{
+            width: 500px;
+            /*height: 500px;*/
+            border: 2px solid #333;
+        }
+        .box01{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            color:#fff;
+            float:left;
+            clear:left;
+        }
+        .box02{
+            width: 100px;
+            height: 100px;
+            background: red;
+            color:#fff;
+            float:left;
+            clear:left;
+        }
+        .box03{
+            width: 100px;
+            height: 100px;
+            background: orange;
+            color:#fff;
+            float:left;
+
+        }
+        .box04{
+            width: 500px;
+            height: 200px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box01">111</div>
+    <div class="box02">222</div>
+    <div class="box03">333</div>
+</div>
+<div class="box04"></div>
+
+
+</body>
+</html>

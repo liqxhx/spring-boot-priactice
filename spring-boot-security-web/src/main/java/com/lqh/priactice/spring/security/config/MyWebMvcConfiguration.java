@@ -1,6 +1,9 @@
 package com.lqh.priactice.spring.security.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.web.server.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
@@ -52,9 +55,33 @@ public class MyWebMvcConfiguration /*extends WebMvcConfigurationSupport */ imple
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/", "classpath:/error/");
         registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
+    @Bean
+    public ErrorPageRegistrar errorPageRegistrar() {
+        return new ErrorPageRegistrar() {
+            @Override
+            public void registerErrorPages(ErrorPageRegistry registry) {
+//                registry.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/404.html"));
+                registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404.html"));
+            }
+        };
+    }
+
+    @Bean
+    public WebServerFactoryCustomizer<ConfigurableWebServerFactory> webServerFactoryCustomizer(){
+        return factory -> {
+            ErrorPage errorPage404 = new ErrorPage(HttpStatus.NOT_FOUND,
+                    "/error/404");
+            ErrorPage errorPage400 = new ErrorPage(HttpStatus.BAD_REQUEST,
+                    "/error/500");
+            ErrorPage errorPage500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "/error/500");
+            factory.addErrorPages(errorPage400, errorPage404,
+                    errorPage500);
+        };
+    }
 }

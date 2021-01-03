@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.lqh.priactice.spring.security.model.User;
 import com.lqh.priactice.spring.security.service.UserService;
 import com.lqh.priactice.spring.security.validate.GroupAdd;
+import com.lqh.priactice.spring.security.validate.ValidateException;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,15 +44,23 @@ public class UserController {
 
     @PostMapping("/add")
     @JsonView(User.UserDetailView.class)
-    public User add(@Validated(GroupAdd.class) @RequestBody User user/*, BindingResult bindingResult*/) {
-//        if (bindingResult.hasErrors()) {
-//            bindingResult.getAllErrors().stream().forEach(System.out::println);
-//            bindingResult.getAllErrors().stream().forEach(e -> {
-//                FieldError fe = (FieldError)e;
-//                System.out.println(fe.getField() + ": " + fe.getDefaultMessage());
-//            });
-//        }
-        System.out.println("add=============");
+    public User add(@Validated(GroupAdd.class) @RequestBody User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().stream().forEach(System.out::println);
+            StringBuffer stringBuffer = new StringBuffer();
+            bindingResult.getAllErrors().stream().forEach(e -> {
+                FieldError fe = (FieldError)e;
+                stringBuffer.append(fe.getField() + ": " + fe.getDefaultMessage()).append(";");
+            });
+            throw new ValidateException(stringBuffer.toString());
+        }
+        return userService.save(user);
+    }
+
+    @PostMapping("/add2")
+    @JsonView(User.UserDetailView.class)
+    public User add2(@Validated(GroupAdd.class) @RequestBody User user) {
+
         return userService.save(user);
     }
 }

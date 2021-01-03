@@ -6,5 +6,7 @@
 </head>
 <body>
     <p th:text="'Hello, ' + ${name} + '!'" />
+
+    <input type="text" th:value="${id}" th:readonly="${id != null}">
 </body>
 </html>

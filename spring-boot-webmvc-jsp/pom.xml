@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.lqh.priactice</groupId>
-        <artifactId>spring-boot-priactice</artifactId>
+        <groupId>com.lqh.practice</groupId>
+        <artifactId>spring-boot-practice</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

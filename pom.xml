@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lqh.priactice</groupId>
-    <artifactId>spring-boot-priactice</artifactId>
+    <groupId>com.lqh.practice</groupId>
+    <artifactId>spring-boot-practice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
@@ -24,6 +24,10 @@
         <module>spring-boot-webflux</module>
         <module>spring-boot-redis</module>
         <module>spring-boot-task</module>
+        <module>spring-boot-actuator</module>
+        <module>spring-boot-theamleaf-layui</module>
+        <module>spring-boot-statemachine</module>
+        <module>spring-boot-common</module>
     </modules>
 
     <properties>

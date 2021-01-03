@@ -70,7 +70,7 @@ public class MySpringSecurityConfiguration extends WebSecurityConfigurerAdapter 
             .antMatchers("/swagger-ui.html", "/v2/**", "/swagger-resources/**", "/webjars/**").permitAll()
             // login
             .antMatchers(SecurityConstants.DEFAULT_LOGIN_URL, "/validate/code/**", "/signin.html",  SecurityConstants.DEFAULT_LOGIN_PROCESSING_SMS_URL).permitAll()
-            .antMatchers("/ping*").permitAll()
+            .antMatchers("/ping*", "/user/**").permitAll()
                 // 所有请求
             .anyRequest()
             // 都需要认证

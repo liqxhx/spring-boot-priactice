@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="http://layui.liqh.online:8000/layui2.5.7/layui/css/layui.css">
+</head>
+<body>
+layui is fun!
+
+
+<script src="http://layui.liqh.online:8000/layui2.5.7/layui/layui.js"></script>
+<script>
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+
+        layer.msg('Hello layui');
+    });
+</script>
+</body>
+</html>

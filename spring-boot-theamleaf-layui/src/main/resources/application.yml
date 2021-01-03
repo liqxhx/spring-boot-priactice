@@ -1,0 +1,19 @@
+spring:
+  thymeleaf:
+    # 开发配置为false,避免修改模板还要重启服务器
+    cache: false
+    # 模板的模式，支持 HTML, XML TEXT JAVASCRIPT
+    mode: HTML5
+    # 配置模板路径，默认是templates，可以不用配置
+    prefix: classpath:/templates/
+    suffix: .html
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+
+
+
+
+
+

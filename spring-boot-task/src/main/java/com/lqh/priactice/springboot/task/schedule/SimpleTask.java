@@ -29,6 +29,17 @@ public class SimpleTask {
 
     }
 
+    @Scheduled(fixedDelay = 1000, initialDelay = 0)
+    public void printJob2() {
+        println("print job2 run");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void println(String content){
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+" "+Thread.currentThread().getName()+": "+content);
     }

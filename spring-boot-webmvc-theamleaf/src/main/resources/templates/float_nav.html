@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+
+        ul {
+            list-style: none; /*去掉默认样式中的圆点*/
+        }
+
+        a {
+            text-decoration: none; /*去掉a链接默认下划线*/
+        }
+
+        .container {
+
+            width: 1200px; /*宽度1200像素，高度自适应*/
+            margin: 0 auto; /*居中显示*/
+
+        }
+
+        .header {
+            width: 1200px; /*宽度1200像素，高度自适应*/
+            background: #ccc; /*头部背景色*/
+            overflow: hidden;
+            zoom: 1;
+        }
+
+        .header .logo  {
+            /*设置logo宽高都为200px*/
+            /*width: 100px;*/
+            /*height: 100px;*/
+            float: left;
+            padding: 5px 40px;
+        }
+
+        .header .nav {
+            /*宽高由内容撑起来，所以不用特意设置*/
+            float: right;
+            overflow: hidden;
+            zoom: 1;
+            padding-right: 40px;
+        }
+
+        .header .nav li {
+            /*宽高由内容撑起来，所以不用特意设置*/
+            float: left;
+            margin-right: 20px;
+        }
+
+        .header .nav li a {
+            display: block;
+            height: 80px;
+            line-height: 80px; /*垂直居中*/
+            padding: 0px 20px;
+            font-family: '微软雅黑';
+            font-size: 16px;
+            color:#333;
+        }
+
+        .header .nav li a:hover{
+            color:#fff;
+        }
+
+        .main {
+            width: 1200px;
+            overflow: hidden;
+            zoom: 1;
+        }
+
+        .main .content {
+            width: 1000px;
+            height: 500px;
+            background: blue;
+            float:left;
+        }
+
+        .main .sidebar {
+            width: 200px;
+            height: 500px;
+            background: orange;
+            float:left;
+        }
+        .footer {
+            width: 1200px;
+            height: 90px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="logo">
+            <a href="#"><img src="../static/images/dota2.jpg" style="width: 80px;height:80px;"></a>
+        </div>
+        <ul class="nav">
+            <li><a href="#">hello</a></li>
+            <li><a href="#">world</a></li>
+            <li><a href="#">java</a></li>
+            <li><a href="#">golang</a></li>
+            <li><a href="#">c++</a></li>
+        </ul>
+    </div>
+
+
+    <div class="main">
+        <div class="content">content</div>
+        <div class="sidebar">sidebar</div>
+    </div>
+
+
+    <div class="footer">
+        footer
+    </div>
+</div>
+</body>
+</html>

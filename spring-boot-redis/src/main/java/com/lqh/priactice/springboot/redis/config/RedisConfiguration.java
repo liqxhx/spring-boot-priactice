@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 @EnableCaching
 public class RedisConfiguration extends CachingConfigurerSupport {
     @Override
-    @Bean
+//    @Bean
     public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
             @Override
@@ -48,7 +48,7 @@ public class RedisConfiguration extends CachingConfigurerSupport {
      * 解决序列化不一致的问题
      * @param redisTemplate
      */
-    @Autowired
+//    @Autowired
     public void setRedisTemplate(RedisTemplate redisTemplate) {
         // key序列化方式，但是如果方法上有Long等非String类型的话，会报类型转换错误
         RedisSerializer<String> stringRedisSerializer = new StringRedisSerializer();
