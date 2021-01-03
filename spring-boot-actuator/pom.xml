@@ -50,6 +50,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.lqh.practice</groupId>
+            <artifactId>spring-boot-common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

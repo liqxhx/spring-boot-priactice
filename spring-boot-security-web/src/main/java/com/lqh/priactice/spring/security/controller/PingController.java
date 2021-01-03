@@ -2,7 +2,6 @@ package com.lqh.priactice.spring.security.controller;
 
 import com.lqh.priactice.spring.security.dto.ResponseDTO;
 import com.lqh.priactice.spring.security.service.PingService;
-import com.sun.deploy.pings.Pings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
