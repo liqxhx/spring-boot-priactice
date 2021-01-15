@@ -29,6 +29,7 @@
         <module>spring-boot-statemachine</module>
         <module>spring-boot-common</module>
         <module>spring-boot-redis-jedis</module>
+        <module>spring-boot-mapstruct</module>
     </modules>
 
     <properties>
