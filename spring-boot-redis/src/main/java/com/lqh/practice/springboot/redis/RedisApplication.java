@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
  * @since 2020/08/20 15:53
  */
 @SpringBootApplication
-@ComponentScan("com.lqh.practice.springboot.redis")
 public class RedisApplication implements ApplicationRunner {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
@@ -28,6 +27,7 @@ public class RedisApplication implements ApplicationRunner {
     * main
     */
     public static void main(String[] args){
+
         SpringApplication.run(RedisApplication.class, args);
     }
 

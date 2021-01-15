@@ -28,6 +28,7 @@
         <module>spring-boot-theamleaf-layui</module>
         <module>spring-boot-statemachine</module>
         <module>spring-boot-common</module>
+        <module>spring-boot-redis-jedis</module>
     </modules>
 
     <properties>
