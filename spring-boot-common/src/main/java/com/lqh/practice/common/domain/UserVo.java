@@ -20,7 +20,7 @@ public class UserVo {
     private Long id;
     private String username;
     private String password;
-    private Integer gender;
+    private Gender gender;
     private LocalDate birthday;
     private String createTime;
     private List<UserConfig> config;

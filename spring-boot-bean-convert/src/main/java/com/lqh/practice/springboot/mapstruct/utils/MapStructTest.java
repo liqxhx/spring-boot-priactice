@@ -1,5 +1,6 @@
 package com.lqh.practice.springboot.mapstruct.utils;
 
+import com.lqh.practice.common.domain.Gender;
 import com.lqh.practice.common.domain.User;
 import com.lqh.practice.common.domain.UserVo;
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +57,7 @@ public class MapStructTest {
         UserVo userVo = new UserVo()
                 .setId(1L)
                 .setUsername("zhangsan")
-                .setGender(2)
+                .setGender(Gender.FAMALE)
                 .setCreateTime("2020-01-18 15:32:54")
                 .setBirthday(LocalDate.of(1999, 9, 27))
                 .setConfig(Collections.singletonList(userConfig));

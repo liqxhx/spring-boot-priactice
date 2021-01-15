@@ -1,9 +1,6 @@
 package com.lqh.practice.springboot.mapstruct.utils;
 
-import org.mapstruct.InheritConfiguration;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.MapperConfig;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -22,12 +19,15 @@ import java.util.stream.Stream;
  */
 @MapperConfig
 public interface BaseMapping<SOURCE, TARGET> {
-
     /**
-     * 映射同名属性
+     * 自动映射同名属性
+     *
      */
-    @Mapping(target = "createTime", dateFormat = "yyyy-MM-dd HH:mm:ss")
+    @Mappings({
+            @Mapping(target = "createTime", dateFormat = "yyyy-MM-dd HH:mm:ss")
+    })
     TARGET sourceToTarget(SOURCE var1);
+
 
     /**
      * 反向，映射同名属性
