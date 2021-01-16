@@ -30,6 +30,9 @@
         <module>spring-boot-common</module>
         <module>spring-boot-redis-jedis</module>
         <module>spring-boot-bean-convert</module>
+        <module>spring-boot-validation</module>
+        <module>spring-boot-aop</module>
+        <module>spring-boot-retry</module>
     </modules>
 
     <properties>
