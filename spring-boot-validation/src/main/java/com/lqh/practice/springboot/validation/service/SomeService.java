@@ -1,9 +1,11 @@
 package com.lqh.practice.springboot.validation.service;
 
-import com.lqh.practice.springboot.validation.aop.NeedValidate;
 import com.lqh.practice.springboot.validation.domain.ReqDio;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 /**
  * <p> 类描述: SomeService
@@ -15,7 +17,8 @@ import org.springframework.validation.annotation.Validated;
  */
 @Component
 public class SomeService {
-    public void doSomeThing(@Validated ReqDio req) {
-
+    @Validated
+    public void doSomeThing(@NotBlank(message = "{param.not.blank}") String params, @Valid ReqDio req) {
+        System.err.println("do some thing");
     }
 }

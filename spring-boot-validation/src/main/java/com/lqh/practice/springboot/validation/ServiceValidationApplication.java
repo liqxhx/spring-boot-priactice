@@ -33,6 +33,7 @@ public class ServiceValidationApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         ReqDio req = new ReqDio();
         req.setName("test");
-        someService.doSomeThing(req);
+        req.setAge(1);
+        someService.doSomeThing(null, req);
     }
 }
