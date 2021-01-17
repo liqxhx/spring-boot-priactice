@@ -33,6 +33,7 @@
         <module>spring-boot-validation</module>
         <module>spring-boot-aop</module>
         <module>spring-boot-retry</module>
+        <module>spring-boot-admin</module>
     </modules>
 
     <properties>

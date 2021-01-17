@@ -50,7 +50,7 @@ public class ValidateAspect {
     }
 
 
-    @Before("execution(public * com.lqh.practice.springboot.validation.service..*.*(..)) && @annotation(org.springframework.validation.annotation.Validated)")
+    @Before("execution(public * com.lqh.practice.springboot.validation.service..*.*(..)) && ?springboot@annotation(org.springframework.validation.annotation.Validated)")
     public void before(JoinPoint joinPoint) throws Exception {
         Object[] args = joinPoint.getArgs();
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
