@@ -21,6 +21,25 @@ public class LuaTests {
     private RedisTemplate<String, String> redisTemplate;
 
     @Test
+    public void testRatelimit() throws Exception {
+        File file = ResourceUtils.getFile("classpath:lua/ratelimit2.lua");
+
+        String luaStr = FileUtils.readFileToString(file, "utf-8");
+
+        Assert.assertNotNull(luaStr);
+
+        System.out.println(luaStr);
+
+        DefaultRedisScript<String> script = new DefaultRedisScript();
+        script.setScriptText(luaStr);
+        script.setResultType(String.class);
+        for (int i = 0; i < 10; i++) {
+            Object val = redisTemplate.execute(script, Collections.singletonList("abc"), "30");
+            System.out.println(val.getClass().getName() + " " + val);
+        }
+    }
+
+    @Test
     public void testSetIfAbsentThenExpire() throws Exception {
         File file = ResourceUtils.getFile("classpath:lua/setIfAbsentThenExpire.lua");
 
