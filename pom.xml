@@ -34,6 +34,8 @@
         <module>spring-boot-aop</module>
         <module>spring-boot-retry</module>
         <module>spring-boot-admin</module>
+        <module>spring-boot-swagger2</module>
+        <module>spring-boot-miti-datasource</module>
     </modules>
 
     <properties>
