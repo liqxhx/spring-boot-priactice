@@ -36,6 +36,10 @@
         <module>spring-boot-admin</module>
         <module>spring-boot-swagger2</module>
         <module>spring-boot-miti-datasource</module>
+        <module>spi-driver</module>
+        <module>spi-driver-xs</module>
+        <module>spi-driver-demo</module>
+        <module>spring-boot-redisson</module>
     </modules>
 
     <properties>
@@ -57,6 +61,18 @@
             <dependency>
                 <groupId>com.lqh.practice</groupId>
                 <artifactId>spring-boot-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lqh.practice</groupId>
+                <artifactId>spi-driver</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lqh.practice</groupId>
+                <artifactId>spi-driver-xs</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
