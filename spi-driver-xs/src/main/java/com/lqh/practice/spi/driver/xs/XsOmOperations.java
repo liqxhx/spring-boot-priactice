@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * <p> 类描述: SoftSwitchOperations XS Implemention
+ * <p> 类描述: SoftSwitchOperations XS Implementation
  *
  * @author qhlee
  * @version 1.0
