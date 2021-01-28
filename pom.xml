@@ -40,6 +40,8 @@
         <module>spi-driver-xs</module>
         <module>spi-driver-demo</module>
         <module>spring-boot-redisson</module>
+        <module>myredisson-spring-boot-starter</module>
+        <module>myredisson-spring-boot-starter-demo</module>
     </modules>
 
     <properties>
