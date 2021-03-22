@@ -3,6 +3,7 @@ package com.lqh.practice.actuator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
  */
 @SpringBootApplication
 @Slf4j
+@EnableScheduling
 public class ActuatorApplication {
     /**
     * main
