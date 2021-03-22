@@ -1,0 +1,15 @@
+{
+  "properties" : [
+    {
+      "name": "my.redisson.host",
+      "type": "java.lang.String",
+      "description": "redis服务器IP地址",
+      "defaultValue": "localhost"
+    },{
+      "name": "my.redisson.port",
+      "type": "java.lang.Integer",
+      "description": "redis服务器端口号",
+      "defaultValue": 6379
+    }
+  ]
+}
