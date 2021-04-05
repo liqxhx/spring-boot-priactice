@@ -45,6 +45,8 @@
         <module>spring-boot-springcache</module>
         <module>spring-webflux-practice</module>
         <module>spring-boot-dubbo-nacos</module>
+        <module>spring-boot-nacos</module>
+        <module>spring-boot-task-quartz</module>
     </modules>
 
     <properties>
