@@ -83,7 +83,7 @@ public class DESUtils {
     /**
     * main
     */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         if(args == null || args.length < 1) {
             System.out.println("请输入要加密的字符串，用空格分隔");
         }
