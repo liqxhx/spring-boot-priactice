@@ -28,6 +28,7 @@ public class SmsValidateCodeAuthenticationProvider implements AuthenticationProv
         }
 
         SmsValidateCodeAuthenticationToken smsToken = new SmsValidateCodeAuthenticationToken(userDetails, userDetails.getAuthorities());
+        // 将未验证token里的detail设置到已验证的token里
         smsToken.setDetails(token.getDetails());
         return smsToken;
     }

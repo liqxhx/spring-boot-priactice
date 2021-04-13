@@ -1,5 +1,6 @@
 package com.lqh.priactice.spring.security.controller;
 
+import com.lqh.priactice.spring.security.dto.ResponseDTO;
 import com.lqh.priactice.spring.security.service.SmsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,11 @@ public class SmsValidateCodeController {
      */
     @RequestMapping(value = "/sms/send/{mobile}", method = {RequestMethod.GET})
     @ResponseBody
-    public void sendSms(@PathVariable(name="mobile") String mobile) {
+    public ResponseDTO<String> sendSms(@PathVariable(name="mobile") String mobile) {
+        // todo 生成短信验证码
+        // todo 将验证码放到session中 SessionStrategy
+        // todo 放送验证码
         log.info("/validate/code/sms/send/{}", mobile);
-        smsService.generateAndSend(mobile);
-
+        return ResponseDTO.success(smsService.generateAndSend(mobile).getCode());
     }
 }

@@ -30,10 +30,11 @@ public class SmsService {
     private static final int EXPIRE_SECONDS = 60;
     private Map<String, SmsValidateCode> smsMap = new HashMap<String, SmsValidateCode>(8);
     @Async
-    public void generateAndSend(String mobile) {
+    public SmsValidateCode generateAndSend(String mobile) {
         log.debug("#service#sms#mobile:{}", mobile);
         SmsValidateCode smsValidateCode = generateSmsValidateCode(mobile);
         send(smsValidateCode);
+        return smsValidateCode;
     }
 
     private void send(SmsValidateCode smsValidateCode) {

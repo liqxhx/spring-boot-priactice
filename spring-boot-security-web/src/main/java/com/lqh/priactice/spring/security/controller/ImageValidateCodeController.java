@@ -34,6 +34,9 @@ public class ImageValidateCodeController {
      */
     @GetMapping("/image/refresh")
     public void generateImageCode(HttpServletResponse response) throws IOException {
+        // todo 生成验证码
+        // todo 将验证码放到session中 SessionStrategy
+        // todo 放送验证码
         log.info("/validate/code/image/refresh");
         ImageValidateCode imageValidateCode = captchaService.generate();
         ImageIO.write(imageValidateCode.getImage(), "jpeg", response.getOutputStream());

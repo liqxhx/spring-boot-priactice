@@ -28,21 +28,26 @@ public class SmsValidateCodeAuthenticationToken extends AbstractAuthenticationTo
     private final Object principal;
 //    private Object credentials;
 
-    // ~ Constructors
-    // ===================================================================================================
-    public SmsValidateCodeAuthenticationToken(Object principal/*, Object credentials*/) {
+    /**
+     * 认证前为提交的手机号
+     * @param mobile
+     */
+    public SmsValidateCodeAuthenticationToken(Object mobile) {
         super(null);
-        this.principal = principal;
-//        this.credentials = credentials;
+        this.principal = mobile;
         setAuthenticated(false);
     }
 
-    public SmsValidateCodeAuthenticationToken(Object principal,/* Object credentials,*/
+    /**
+     * 认证后为用户的信息:UserDetails
+     * @param principal
+     * @param authorities
+     */
+    public SmsValidateCodeAuthenticationToken(Object principal,
                                                Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principal = principal;
-//        this.credentials = credentials;
-        super.setAuthenticated(true); // must use super, as we override
+        super.setAuthenticated(true);
     }
 
     // ~ Methods
