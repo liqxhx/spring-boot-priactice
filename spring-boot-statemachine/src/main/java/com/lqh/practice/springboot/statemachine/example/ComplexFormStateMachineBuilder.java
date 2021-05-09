@@ -40,30 +40,38 @@ public class ComplexFormStateMachineBuilder {
                 .states(EnumSet.allOf(ComplexFormStates.class));
 
         builder.configureTransitions()
+                // write blank ---> full_form
                 .withExternal()
                 .source(ComplexFormStates.BLANK_FORM).target(ComplexFormStates.FULL_FORM)
                 .event(ComplexFormEvents.WRITE)
-                .action(new ComplexFormChoiceAction(), new ComplexFormChoiceAction())
-                .guard(new ComplexFormCheckChoiceGuard())
+
+                // check full_form ---> check_choice
                 .and()
                 .withExternal()
                 .source(ComplexFormStates.FULL_FORM).target(ComplexFormStates.CHECK_CHOICE)
+                // ComplexFormCheckChoiceGuard1 返回true执行下面action，2.2.1版本測試只會執行第一個action
+//                .action(new CheckFormChoiceAction(), new CheckFormChoiceAction2())
+//                .guard(new ComplexFormCheckChoiceGuard1())
                 .event(ComplexFormEvents.CHECK)
+
+                // formname==null ? 22 : 111 3333
                 .and()
                 .withChoice()
                 .source(ComplexFormStates.CHECK_CHOICE)
-                .first(ComplexFormStates.CONFIRM_FORM, new ComplexFormCheckChoiceGuard())
-                .last(ComplexFormStates.DEAL_FORM)
-                .first(ComplexFormStates.CONFIRM_FORM, new ComplexFormCheckChoiceGuard(), new ComplexFormChoiceAction())
-                .last(ComplexFormStates.DEAL_FORM,new ComplexFormChoiceAction(), new ComplexFormChoiceAction2())
+                .first(ComplexFormStates.CONFIRM_FORM, new ComplexFormCheckChoiceGuard(), new ComplexFormChoiceAction(), new ComplexFormChoiceAction3())
+                .last(ComplexFormStates.DEAL_FORM, new ComplexFormChoiceAction2(), new ComplexFormChoiceAction4())
+
+                // submit confirm_form ---> success_form
                 .and()
                 .withExternal()
                 .source(ComplexFormStates.CONFIRM_FORM).target(ComplexFormStates.SUCCESS_FORM)
                 .event(ComplexFormEvents.SUBMIT)
+
                 .and()
                 .withExternal()
                 .source(ComplexFormStates.DEAL_FORM).target(ComplexFormStates.DEAL_CHOICE)
                 .event(ComplexFormEvents.DEAL)
+
                 .and()
                 .withChoice()
                 .source(ComplexFormStates.DEAL_CHOICE)

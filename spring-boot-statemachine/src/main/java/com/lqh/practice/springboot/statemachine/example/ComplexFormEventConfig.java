@@ -30,6 +30,7 @@ public class ComplexFormEventConfig {
         logger.info("---校验复杂表单---");
     }
 
+    // 在choice判断的时候，从一个状态转变到另外一个状态时，是不会在eventConfig触发方法的
     //不会执行
     @OnTransition(source = "CHECK_CHOICE", target = "CONFIRM_FORM")
     public void check2confirm(Message<ComplexFormEvents> message) {

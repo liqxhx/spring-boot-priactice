@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 @RestController
 public class TestController {
     @Autowired
@@ -17,15 +19,17 @@ public class TestController {
     @Autowired
     private BeanFactory beanFactory;
 
-    @GetMapping("/test/{name}")
-    public void test(@PathVariable(name="name", required = false) String name) throws Exception {
+    @GetMapping("/test")
+    public void test() throws Exception {
 
         StateMachine<ComplexFormStates, ComplexFormEvents> stateMachine = complexFormStateMachineBuilder.build(beanFactory);
         System.out.println(stateMachine.getId());
 
+        stateMachine.getStateMachineAccessor().
+
         Form form1 = new Form();
         form1.setId("111");
-        form1.setFormName(name);
+        form1.setFormName(new Random(System.currentTimeMillis()).nextBoolean()?"test" : null);
 
 
         // 创建流程
@@ -40,12 +44,12 @@ public class TestController {
         stateMachine.sendEvent(message);
         System.out.println("当前状态：" + stateMachine.getState().getId());
 
-        message = MessageBuilder.withPayload(ComplexFormEvents.DEAL).setHeader("form", form1).build();
-        stateMachine.sendEvent(message);
-        System.out.println("当前状态：" + stateMachine.getState().getId());
-
-        message = MessageBuilder.withPayload(ComplexFormEvents.SUBMIT).setHeader("form", form1).build();
-        stateMachine.sendEvent(message);
-        System.out.println("最终状态：" + stateMachine.getState().getId());
+//        message = MessageBuilder.withPayload(ComplexFormEvents.DEAL).setHeader("form", form1).build();
+//        stateMachine.sendEvent(message);
+//        System.out.println("当前状态：" + stateMachine.getState().getId());
+//
+//        message = MessageBuilder.withPayload(ComplexFormEvents.SUBMIT).setHeader("form", form1).build();
+//        stateMachine.sendEvent(message);
+//        System.out.println("最终状态：" + stateMachine.getState().getId());
     }
 }

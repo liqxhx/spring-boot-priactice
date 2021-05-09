@@ -1,7 +1,10 @@
 package com.lqh.practice.springboot.statemachine.example;
 
+import lombok.Data;
+
+@Data
 public class Form {
-    public String formName;
+    private String formName;
     private String id;
     private String name;
 
