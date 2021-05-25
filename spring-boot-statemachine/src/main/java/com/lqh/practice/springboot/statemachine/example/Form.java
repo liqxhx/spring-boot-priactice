@@ -1,8 +1,12 @@
 package com.lqh.practice.springboot.statemachine.example;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Form {
     private String formName;
     private String id;

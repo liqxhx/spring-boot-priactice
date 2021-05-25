@@ -25,22 +25,20 @@ public class TestController {
         StateMachine<ComplexFormStates, ComplexFormEvents> stateMachine = complexFormStateMachineBuilder.build(beanFactory);
         System.out.println(stateMachine.getId());
 
-        stateMachine.getStateMachineAccessor().
-
-        Form form1 = new Form();
-        form1.setId("111");
-        form1.setFormName(new Random(System.currentTimeMillis()).nextBoolean()?"test" : null);
+        Form form = new Form();
+        form.setId("111");
+        form.setFormName(new Random(System.currentTimeMillis()).nextBoolean()?"test" : null);
 
 
         // 创建流程
         System.out.println("-------------------form1------------------");
         stateMachine.start();
 
-        Message message = MessageBuilder.withPayload(ComplexFormEvents.WRITE).setHeader("form", form1).build();
+        Message message = MessageBuilder.withPayload(ComplexFormEvents.WRITE).setHeader("form", form).build();
         stateMachine.sendEvent(message);
         System.out.println("当前状态：" + stateMachine.getState().getId());
 
-        message = MessageBuilder.withPayload(ComplexFormEvents.CHECK).setHeader("form", form1).build();
+        message = MessageBuilder.withPayload(ComplexFormEvents.CHECK).setHeader("form", form).build();
         stateMachine.sendEvent(message);
         System.out.println("当前状态：" + stateMachine.getState().getId());
 

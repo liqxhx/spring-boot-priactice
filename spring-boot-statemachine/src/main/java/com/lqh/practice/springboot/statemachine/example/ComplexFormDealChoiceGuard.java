@@ -11,7 +11,7 @@ public class ComplexFormDealChoiceGuard implements Guard<ComplexFormStates, Comp
         boolean returnValue = false;
         Form form = context.getMessage().getHeaders().get("form", Form.class);
 
-        if ((form.formName == null)||(form.formName.indexOf("坏") > -1)) {
+        if ((form.getFormName() == null)||(form.getFormName().indexOf("坏") > -1)) {
             returnValue = false;
         } else {
             returnValue = true;
