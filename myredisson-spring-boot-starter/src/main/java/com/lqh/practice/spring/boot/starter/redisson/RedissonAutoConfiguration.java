@@ -12,6 +12,10 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <p> 类描述: RedissonAutoConfiguration
  *
+ * <pre>
+ *     AutoConfigurationImportSelector
+ * </pre>
+ *
  * @author qhlee
  * @version 1.0
  * @date 2021/01/28 21:42
@@ -33,7 +37,6 @@ public class RedissonAutoConfiguration {
         config.useSingleServer()
                 .setAddress(prefix + properties.getHost() + ":" + properties.getPort())
                 .setConnectTimeout(properties.getTimeout());
-
 
         return Redisson.create(config);
     }

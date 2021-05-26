@@ -1,7 +1,9 @@
 package com.lqh.practice.spring.boot.starter.redisson;
 
 import org.redisson.api.RBucket;
+import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.StringCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -37,6 +39,10 @@ public class MyRedissonApplication implements ApplicationRunner {
         if(bucket.get() == null) {
             bucket.set("hello");
         }
+
+        RMap r = redissonClient.getMap("a:b:c", new StringCodec());
+        r.put("k", "v");
+
         System.err.println(bucket.get().toString());
     }
 }

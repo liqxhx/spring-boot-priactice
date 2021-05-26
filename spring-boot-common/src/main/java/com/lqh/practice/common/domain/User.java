@@ -3,6 +3,7 @@ package com.lqh.practice.common.domain;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
  *chain的中文含义是链式的，设置为true，则setter方法返回当前对象
  */
 @Accessors(chain = true)
-public class User {
+public class User implements Serializable {
     private Long id;
     private String username;
     private String password;

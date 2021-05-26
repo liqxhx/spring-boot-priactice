@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationContextInitializer=com.liqh.practice.springboot.initializer.FirstInitializer
+org.springframework.context.ApplicationListener=com.liqh.practice.springboot.listener.FirstListener,com.liqh.practice.springboot.listener.FourthListener
