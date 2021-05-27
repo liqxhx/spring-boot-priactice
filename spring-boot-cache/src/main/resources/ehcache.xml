@@ -30,7 +30,7 @@
     </defaultCache>
 
     <!-- users缓存 -->
-    <cache name="users"
+    <cache name="usersEhCache"
            maxElementsInMemory="5000"
            eternal="false"
            timeToIdleSeconds="3600"
