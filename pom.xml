@@ -55,6 +55,9 @@
         <module>spring-boot-framework</module>
         <module>spring-boot-resttemplate-httpclient</module>
         <module>spring-boot-cache</module>
+        <module>spring-boot-mybatis-xml</module>
+        <module>spring-boot-mybatis-generator</module>
+        <module>spring-boot-jpa</module>
     </modules>
 
     <properties>
