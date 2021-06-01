@@ -1,4 +1,4 @@
-package com.lqh.practice.sb.mybatis.mapper;
+package com.lqh.practice.sb.mybatis;
 
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
 import org.apache.ibatis.mapping.Environment;
@@ -13,7 +13,7 @@ public abstract class BaseMapper {
     public <T> T getMapper(Class<T> mapperClass, String mapperXml) throws Exception {
         // 数据源注入
         UnpooledDataSource dataSource = new UnpooledDataSource();
-        dataSource.setUrl("jdbc:mysql://192.168.99.7:7306/zmn_cc2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
         dataSource.setDriver("com.mysql.jdbc.Driver");
