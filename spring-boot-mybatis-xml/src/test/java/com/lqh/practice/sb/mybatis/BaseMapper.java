@@ -22,7 +22,7 @@ public abstract class BaseMapper {
         Environment environment = new Environment("test", new JdbcTransactionFactory(), dataSource);
         Configuration codeConfig = new Configuration(environment);
         sqlSessionFactoryBean.setConfiguration(codeConfig);
-        ClassPathResource classPathResource = new ClassPathResource("mapper/" + mapperXml);
+        ClassPathResource classPathResource = new ClassPathResource(mapperXml);
         ClassPathResource[] arr = {classPathResource};
         sqlSessionFactoryBean.setMapperLocations(arr);
 
