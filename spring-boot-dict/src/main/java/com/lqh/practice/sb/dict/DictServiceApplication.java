@@ -40,5 +40,11 @@ public class DictServiceApplication implements ApplicationRunner {
         DictEntity dictEntity = dictManager.get("NA");
         log.info(dictEntity.codeMap());
         log.info(dictEntity.nameMap());
+        log.info(dictEntity.descMap());
+
+        DictEntity telcoDictEntity = dictManager.get("Telco");
+        log.info(telcoDictEntity.codeMap());
+        log.info(telcoDictEntity.nameMap());
+        log.info(telcoDictEntity.descMap());
     }
 }

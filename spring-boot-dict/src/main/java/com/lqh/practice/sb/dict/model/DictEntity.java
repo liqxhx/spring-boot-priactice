@@ -24,6 +24,8 @@ public class DictEntity {
 
     private Map<String, Integer> nameMap = Collections.EMPTY_MAP;
 
+    private Map<Integer, String> descMap = Collections.EMPTY_MAP;
+
     public DictEntity(String fieldName, List<DictItem> items) {
         this.fieldName = fieldName;
         init(items);
@@ -35,6 +37,7 @@ public class DictEntity {
         }
         this.items = Collections.unmodifiableList(items);
         this.codeMap = Collections.unmodifiableMap(items.stream().collect(Collectors.toMap(DictItem::getEnumValue, DictItem::getEnumName)));
+        this.descMap = Collections.unmodifiableMap(items.stream().collect(Collectors.toMap(DictItem::getEnumValue, DictItem::getEnumDesc)));
         this.nameMap = Collections.unmodifiableMap(items.stream().collect(Collectors.toMap(DictItem::getEnumName, DictItem::getEnumValue)));
     }
 
@@ -52,6 +55,14 @@ public class DictEntity {
      */
     public Map<Integer, String> codeMap() {
         return this.codeMap;
+    }
+
+    /**
+     * 值对应的名称描述
+     * @return {@link Map<Integer, String>}
+     */
+    public Map<Integer, String> descMap() {
+        return this.descMap;
     }
 
     /**
