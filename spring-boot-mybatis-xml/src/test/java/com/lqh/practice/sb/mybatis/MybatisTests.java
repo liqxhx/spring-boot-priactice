@@ -8,14 +8,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
-
-import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
 
 /**
  * <p> 类描述: MybatisTests
@@ -38,14 +34,14 @@ public class MybatisTests {
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         inputStream.close();
 
-        EmbeddedDatabase db = new EmbeddedDatabaseBuilder()
-                .generateUniqueName(true)
-                .setType(H2)
-                .setScriptEncoding("UTF-8")
-                .ignoreFailedDrops(true)
-                .addScript("schema.sql")
-                .addScripts("data.sql")
-                .build();
+//        EmbeddedDatabase db = new EmbeddedDatabaseBuilder()
+//                .generateUniqueName(true)
+//                .setType(H2)
+//                .setScriptEncoding("UTF-8")
+//                .ignoreFailedDrops(true)
+//                .addScript("schema.sql")
+//                .addScripts("data.sql")
+//                .build();
 
 //        new Console().runTool();
 //        new RunScript().runTool("jdbc:h2:mem:testdb", "sa","", "schema.sql");
