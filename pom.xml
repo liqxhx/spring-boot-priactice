@@ -43,7 +43,6 @@
         <module>myredisson-spring-boot-starter</module>
         <module>myredisson-spring-boot-starter-demo</module>
         <module>spring-boot-springcache</module>
-        <module>spring-webflux-practice</module>
         <module>spring-boot-dubbo-nacos</module>
         <module>spring-boot-nacos</module>
         <module>spring-boot-task-quartz</module>
@@ -58,6 +57,7 @@
         <module>spring-boot-mybatis-xml</module>
         <module>spring-boot-mybatis-generator</module>
         <module>spring-boot-jpa</module>
+        <module>spring-boot-dict</module>
     </modules>
 
     <properties>
