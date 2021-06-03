@@ -1,10 +1,10 @@
 package com.lqh.practice.sb.mybatis;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lqh.practice.sb.mybatis.mapper.CoffeeMapper;
 import com.lqh.practice.sb.mybatis.model.Coffee;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -47,19 +47,26 @@ public class MybatisXmlApplication implements ApplicationRunner {
 //        coffeeMapper.selectAll().forEach(System.out::println);
 //        System.err.println("===============================");
 
-        coffeeMapper.findAllWithRowBounds(new RowBounds(1, 3)).forEach(c -> log.info("page 1. c:{}", c));
-        System.err.println("===============================");
-        coffeeMapper.findAllWithRowBounds(new RowBounds(2, 3)).forEach(c -> log.info("page 2. c:{}", c));
-        System.err.println("===============================");
-        coffeeMapper.findAllWithRowBounds(new RowBounds(1, 0)).forEach(c -> log.info("page 1. c:{}", c));
+//        coffeeMapper.findAllWithRowBounds(new RowBounds(1, 3)).forEach(c -> log.info("page 1. c:{}", c));
+//        System.err.println("===============================");
+//        coffeeMapper.findAllWithRowBounds(new RowBounds(2, 3)).forEach(c -> log.info("page 2. c:{}", c));
+//        System.err.println("===============================");
+//        coffeeMapper.findAllWithRowBounds(new RowBounds(1, 0)).forEach(c -> log.info("page 1. c:{}", c));
 
-        System.err.println("===============================");
-        List<Coffee> list = coffeeMapper.findAllWithParam(1, 3);
-        list.forEach(c -> log.info("page 1, c:{}", c));
-        System.err.println("===============================");
-        list = coffeeMapper.findAllWithParam(2, 3);
-        PageInfo<Coffee> pageInfo = new PageInfo<>(list);
-        log.info("pageInfo:{}", pageInfo);
+//        System.err.println("===============================");
+//        List<Coffee> list = coffeeMapper.findAllWithParam(1, 3);
+//        list.forEach(c -> log.info("page 1, c:{}", c));
+//        System.err.println("===============================");
+//        list = coffeeMapper.findAllWithParam(2, 3);
+//        PageInfo<Coffee> pageInfo = new PageInfo<>(list);
+//        log.info("pageInfo:{}", pageInfo);
+
+        // 第二页，每页3条
+        PageHelper.startPage(2, 3);
+        List<Coffee> list = coffeeMapper.selectAll();
+        list.forEach(c -> log.info("page 2, c:{}", c));
+        PageInfo page = new PageInfo(list, 10);
+        log.info("pageInfo:{}", page);
 
     }
 
