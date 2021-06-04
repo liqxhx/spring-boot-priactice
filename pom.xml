@@ -58,6 +58,7 @@
         <module>spring-boot-mybatis-generator</module>
         <module>spring-boot-jpa</module>
         <module>spring-boot-dict</module>
+        <module>spring-boot-sharding-jdbc</module>
     </modules>
 
     <properties>
