@@ -18,6 +18,10 @@ public class LongEvent {
         this.value = value;
     }
 
+    public long get() {
+        return this.value;
+    }
+
     public void clear() {
         Printer.output("\u001b[31m3 " + this + "\u001b[0m");
         this.value = 0; // null

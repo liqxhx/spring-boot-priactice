@@ -1,17 +1,14 @@
-package com.lqh.practice.sb.disruptor.chain;
+package com.lqh.practice.sb.disruptor.gettingstart;
 
 import com.lmax.disruptor.ExceptionHandler;
-import com.lqh.practice.sb.disruptor.gettingstart.LongEvent;
-import com.lqh.practice.sb.disruptor.gettingstart.Printer;
-
 
 /**
  * <p> 类描述: LongEventExceptionHandler
  *
  * @author qhlee
  * @version 1.0
- * @date 2021/06/06 10:36
- * @since 2021/06/06 10:36
+ * @date 2021/06/09 21:22
+ * @since 2021/06/09 21:22
  */
 public class LongEventExceptionHandler implements ExceptionHandler<LongEvent> {
     @Override
@@ -21,7 +18,7 @@ public class LongEventExceptionHandler implements ExceptionHandler<LongEvent> {
 
     @Override
     public void handleOnStartException(Throwable ex) {
-        Printer.output("LongEventExceptionHandler#handleOnStartException:" + ex);
+
     }
 
     @Override

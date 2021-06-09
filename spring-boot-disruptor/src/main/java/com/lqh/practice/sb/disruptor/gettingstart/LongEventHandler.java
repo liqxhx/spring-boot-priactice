@@ -1,6 +1,8 @@
 package com.lqh.practice.sb.disruptor.gettingstart;
 
 import com.lmax.disruptor.EventHandler;
+import com.lmax.disruptor.WorkHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 
 /**
@@ -11,15 +13,25 @@ import org.springframework.util.StopWatch;
  * @date 2021/06/05 22:24
  * @since 2021/06/05 22:24
  */
-public class LongEventHandler implements EventHandler<LongEvent> {
+@Slf4j
+public class LongEventHandler implements EventHandler<LongEvent> , WorkHandler<LongEvent> {
     @Override
     public void onEvent(LongEvent event, long sequence, boolean endOfBatch) {
-        StopWatch stopWatch = new StopWatch("LongEventHandler" + event + " " + sequence);
+        processEvent(event);
+    }
+
+    @Override
+    public void onEvent(LongEvent event) throws Exception {
+        processEvent(event);
+    }
+
+    private void processEvent(LongEvent event) {
+        StopWatch stopWatch = new StopWatch("LongEventHandler");
         stopWatch.start();
-        Printer.output("consume " + event + " " + System.identityHashCode(event));
+
+        // consume event
+
         stopWatch.stop();
-        Printer.output("consume " + stopWatch.shortSummary());
-//        event=null;
-//        Printer.output("11 "+event);
+        log.debug("consume {} {}", event.get(),  stopWatch.shortSummary());
     }
 }
