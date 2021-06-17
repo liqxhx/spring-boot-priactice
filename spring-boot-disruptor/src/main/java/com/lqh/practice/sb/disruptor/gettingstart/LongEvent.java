@@ -1,5 +1,7 @@
 package com.lqh.practice.sb.disruptor.gettingstart;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -13,6 +15,10 @@ import lombok.ToString;
 @ToString
 public class LongEvent {
     private long value;
+
+    @Getter
+    @Setter
+    private String content;
 
     public void set(long value) {
         this.value = value;
