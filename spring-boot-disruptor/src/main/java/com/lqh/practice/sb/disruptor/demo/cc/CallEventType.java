@@ -15,8 +15,10 @@ public enum CallEventType {
     INVITE(1, "来电请求"),
     INCOMING(2, "来电"),
     RING(3, "座席响铃"),
-    ANSWER(4, "座席接听"),
-    BYE(5, "挂断");
+    ANSWER(4, "ANSWER"),
+    ANSWERED(5, "ANSWERED"),
+    SCORE(6, "用户评价"),
+    BYE(7, "挂断");
 
     private int code;
     private String desc;

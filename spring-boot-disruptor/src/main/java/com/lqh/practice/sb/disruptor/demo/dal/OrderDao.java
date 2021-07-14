@@ -1,8 +1,7 @@
 package com.lqh.practice.sb.disruptor.demo.dal;
 
 
-import com.lqh.practice.sb.disruptor.demo.dal.entity.Order;
-import com.lqh.practice.sb.disruptor.gettingstart.Printer;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p> 类描述: OrderDao
@@ -12,6 +11,7 @@ import com.lqh.practice.sb.disruptor.gettingstart.Printer;
  * @date 2021/06/09 00:10
  * @since 2021/06/09 00:10
  */
+@Slf4j
 public class OrderDao implements Dao<Order>{
 
     @Override
@@ -19,16 +19,16 @@ public class OrderDao implements Dao<Order>{
 //        if(e.getId() == 10) {
 //            throw new IllegalArgumentException();
 //        }
-        Printer.output("insert order :" + e);
+        log.debug("insert order {}", e);
     }
 
     @Override
     public void update(Order e) {
-        Printer.output("update order :" + e);
+        log.debug("update order {}", e);
     }
 
     @Override
     public void delete(Order e) {
-        Printer.output("delete order :" + e);
+        log.debug("delete order {}", e);
     }
 }

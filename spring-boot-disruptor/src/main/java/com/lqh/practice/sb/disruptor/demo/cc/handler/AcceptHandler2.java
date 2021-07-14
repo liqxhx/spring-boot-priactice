@@ -7,7 +7,7 @@ import com.lqh.practice.sb.disruptor.demo.cc.CallSessionManager;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p> 类描述: AcceptStateNodeProcessor
+ * <p> 类描述: 系统受理 CallEventHandler
  *
  * @author qhlee
  * @version 1.0
@@ -15,9 +15,9 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2021/06/08 22:54
  */
 @Slf4j
-public class AcceptHandler extends AbstractStateNodeCallEventHandler {
+public class AcceptHandler2 extends AbstractStateNodeCallEventHandler {
 
-    public AcceptHandler(CallSessionManager callSessionManager) {
+    public AcceptHandler2(CallSessionManager callSessionManager) {
         super(callSessionManager);
     }
 
@@ -36,7 +36,8 @@ public class AcceptHandler extends AbstractStateNodeCallEventHandler {
         CallSession session = callSessionManager.getSession(event.getSessionId());
         if (session != null) {
             session.put("电话状态", "系统受理");
-            log.info("系统受理 event:{} 会话:{}", event, session);
+            session.put("callStatus", getCallState());
+            log.info("系统受理 {}", session);
         } else {
             log.warn("未找到会话：未通过黑名单校验或来电丢失", event);
         }

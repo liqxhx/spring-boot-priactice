@@ -4,8 +4,7 @@ import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import com.lmax.disruptor.util.DaemonThreadFactory;
-import com.lqh.practice.sb.disruptor.demo.dal.entity.Order;
-import com.lqh.practice.sb.disruptor.gettingstart.Printer;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 
 import java.util.Optional;
@@ -18,6 +17,7 @@ import java.util.Optional;
  * @date 2021/06/08 23:46
  * @since 2021/06/08 23:46
  */
+@Slf4j
 public class PersistenceServiceDisruptor {
     Disruptor<PersistenceEvent> disruptor ;
 
@@ -26,9 +26,9 @@ public class PersistenceServiceDisruptor {
 
         PersistenceHandler[] handlers = initHandlers(handlerSize);
 
-        disruptor.setDefaultExceptionHandler(new PersistenceExceptionHandler());
+        this.disruptor.setDefaultExceptionHandler(new PersistenceExceptionHandler());
 
-        disruptor.handleEventsWithWorkerPool(handlers);
+        this.disruptor.handleEventsWithWorkerPool(handlers);
     }
 
     private PersistenceHandler[] initHandlers(int handlerSize) {
@@ -49,16 +49,20 @@ public class PersistenceServiceDisruptor {
     }
 
     public void persist(int opType, Object entity) {
-        StopWatch watch = new StopWatch("persist-produce");
-        watch.start();
+
         Optional.ofNullable(this.disruptor).ifPresent(d -> {
+            StopWatch watch = new StopWatch("persist-produce");
+            watch.start();
+
             d.publishEvent((event, seq, type, data) -> {
                 event.setEntity(data);
                 event.setOpType(type);
             }, opType, entity);
+
+            watch.stop();
+            log.info("produce {}, {}" , entity, watch.shortSummary());
         });
-        watch.stop();
-        Printer.output("produce data:"+ entity + ", " + watch.shortSummary());
+
     }
 
     /**
@@ -68,10 +72,11 @@ public class PersistenceServiceDisruptor {
        PersistenceServiceDisruptor persistenceService = new PersistenceServiceDisruptor(10);
        persistenceService.start();
 
-        for (int i = 0; ; i++) {
+        for (int i = 0; i < 10 ; i++) {
             persistenceService.persist(PersistenceEvent.OP_INSERT, new Order(i));
         }
 
+        persistenceService.stop();
 
     }
 }

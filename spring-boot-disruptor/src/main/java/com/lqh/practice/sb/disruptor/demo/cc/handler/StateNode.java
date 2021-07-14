@@ -15,25 +15,19 @@ public interface StateNode {
 
     int STATE_WELCOME = 3;
 
-    int STATE_INCOMING = 4;
+    int STATE_IVR = 4;
 
-    int STATE_IVR = 5;
+    int STATE_DISPATCH = 5;
 
-    int STATE_DISPATCH_STAT = 6;
+    int STATE_AGENT_RING = 6;
 
-    int STATE_DIS$PATCH_END = 7;
+    int STATE_AGENT_ANSWER = 7;
 
-    int STATE_AGENT_RING = 8;
+    int STATE_ANSWERED = 8;
 
-    int STATE_AGENT_ANSWER = 9;
+    int STATE_SCORE = 9;
 
-    int STATE_TALKING = 10;
+    int STATE_BYE = 10;
 
-    int STATE_EVALUATE = 11;
-
-    int STATE_HUNG_UP = 12;
-
-    int STATE_RECORD = 13;
-
-    public abstract int getCallState();
+    int getCallState();
 }

@@ -32,6 +32,6 @@ public class LongEventHandler implements EventHandler<LongEvent> , WorkHandler<L
         // consume event
 
         stopWatch.stop();
-        log.debug("consume {} {}", event.get(),  stopWatch.shortSummary());
+        log.info("consume {} {}", event,  stopWatch.shortSummary());
     }
 }

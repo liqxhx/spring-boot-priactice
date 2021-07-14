@@ -1,4 +1,4 @@
-package com.lqh.practice.sb.disruptor.gettingstart;
+package com.lqh.practice.sb.disruptor.util;
 
 /**
  * <p> 类描述: Printer

@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CallEvent {
     private CallEventType     eventType;
-    private String  eventId;
     private String  sessionId;
     private Long    eventTime;
     private String  ip;

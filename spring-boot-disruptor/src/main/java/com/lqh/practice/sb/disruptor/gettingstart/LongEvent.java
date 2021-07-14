@@ -20,6 +20,22 @@ public class LongEvent {
     @Setter
     private String content;
 
+    @Getter
+    @Setter
+    private String h1;
+
+    @Getter
+    @Setter
+    private String h2;
+
+    @Getter
+    @Setter
+    private String h3;
+
+    @Getter
+    @Setter
+    private String h4;
+
     public void set(long value) {
         this.value = value;
     }
@@ -29,7 +45,18 @@ public class LongEvent {
     }
 
     public void clear() {
-        Printer.output("\u001b[31m3 " + this + "\u001b[0m");
+//        Printer.output("\u001b[31m3 " + this + "\u001b[0m");
         this.value = 0; // null
+        this.content = null;
+        this.h1 = null;
+        this.h2 = null;
+        this.h3 = null;
+        this.h4 = null;
+    }
+
+    public LongEvent() {}
+
+    public LongEvent(long value) {
+        this.value = value;
     }
 }

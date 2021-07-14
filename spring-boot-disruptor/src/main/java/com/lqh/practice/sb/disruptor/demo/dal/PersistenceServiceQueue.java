@@ -1,12 +1,9 @@
 package com.lqh.practice.sb.disruptor.demo.dal;
 
-import com.lqh.practice.sb.disruptor.demo.dal.entity.Order;
-import com.lqh.practice.sb.disruptor.gettingstart.Printer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 
 import java.util.LinkedList;
-import java.util.concurrent.TimeUnit;
 
 /**
  * <p> 类描述: PersistenceService
@@ -20,16 +17,21 @@ import java.util.concurrent.TimeUnit;
 public class PersistenceServiceQueue {
     private final LinkedList<PersistenceEvent> queue;
     private static volatile boolean running = false;
-
     private final Thread processThread;
     private final PersistenceHandler persistenceHandler;
 
     public PersistenceServiceQueue(int handlerSize) {
         this.queue = new LinkedList<>();
         this.persistenceHandler = new PersistenceHandler();
-        this.persistenceHandler.regist(Order.class, new OrderDao());
-        PersistenceHandler[] handlers = initHandlers(handlerSize);
 
+        /**
+         * 注册 dao
+         */
+        this.persistenceHandler.regist(Order.class, new OrderDao());
+
+        /**
+         * 创建处理线程
+         */
         this.processThread = new Thread() {
             @Override
             public void run() {
@@ -57,20 +59,10 @@ public class PersistenceServiceQueue {
                         e = queue.removeFirst();
                         persistenceHandler.persist(e);
                     }
-
                 }
                 log.info("processThread exit");
             }
         };
-    }
-
-    private PersistenceHandler[] initHandlers(int handlerSize) {
-        PersistenceHandler[] handlers = new PersistenceHandler[handlerSize];
-        for (int i = 0; i < handlerSize; i++) {
-            handlers[i] = new PersistenceHandler();
-            handlers[i].regist(Order.class, new OrderDao());
-        }
-        return handlers;
     }
 
     public void start() {
@@ -82,7 +74,6 @@ public class PersistenceServiceQueue {
             if(PersistenceServiceQueue.running == true) {
                 return;
             }
-
             PersistenceServiceQueue.running = true;
         }
         this.processThread.start();
@@ -90,7 +81,7 @@ public class PersistenceServiceQueue {
 
     }
 
-    public void stop() {
+    public void stop() throws InterruptedException {
         if(PersistenceServiceQueue.running == false) {
             return;
         }
@@ -101,6 +92,10 @@ public class PersistenceServiceQueue {
             }
 
             PersistenceServiceQueue.running = false;
+        }
+
+        if (processThread != null) {
+            processThread.join();
         }
 
         log.info("stopped");
@@ -120,9 +115,8 @@ public class PersistenceServiceQueue {
         }
 
         watch.stop();
-        Printer.output("produce data:"+ entity + ", " + watch.shortSummary());
+        log.info("produce {} {}", entity, watch.shortSummary());
     }
-
 
     /**
     * main
@@ -135,6 +129,7 @@ public class PersistenceServiceQueue {
             persistenceService.persist(PersistenceEvent.OP_INSERT, new Order(i));
         }
 
-        TimeUnit.SECONDS.sleep(60);
+        persistenceService.stop();
+
     }
 }

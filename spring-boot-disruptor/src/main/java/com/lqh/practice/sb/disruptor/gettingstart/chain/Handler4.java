@@ -25,9 +25,11 @@ public class Handler4 implements EventHandler<LongEvent>, WorkHandler<LongEvent>
         processLongEvent(event);
     }
 
-    public void processLongEvent(LongEvent event) {
+    public void processLongEvent(LongEvent event) throws InterruptedException {
         event.setContent(event.getContent()+"h4");
+        event.setH4("h4");
         log.info("{}", event);
+//        TimeUnit.SECONDS.sleep(1);
     }
 
 

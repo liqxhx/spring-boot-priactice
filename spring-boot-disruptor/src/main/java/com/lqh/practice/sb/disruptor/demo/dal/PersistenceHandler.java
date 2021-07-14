@@ -2,7 +2,7 @@ package com.lqh.practice.sb.disruptor.demo.dal;
 
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.WorkHandler;
-import com.lqh.practice.sb.disruptor.gettingstart.Printer;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 
 import java.util.HashMap;
@@ -16,6 +16,7 @@ import java.util.Map;
  * @date 2021/06/08 23:53
  * @since 2021/06/08 23:53
  */
+@Slf4j
 public class PersistenceHandler implements WorkHandler<PersistenceEvent>, EventHandler<PersistenceEvent> {
     private final Map<Class, Dao> daoRegistry = new HashMap<>(8);
 
@@ -52,7 +53,8 @@ public class PersistenceHandler implements WorkHandler<PersistenceEvent>, EventH
         }
 
         watch.stop();
-        Printer.output("\u001b[32m"+ watch.shortSummary() + "\u001b[0m");
+//        Printer.output("\u001b[32m"+ watch.shortSummary() + "\u001b[0m");
+        log.info("{}", watch.shortSummary());
     }
 
     private void update(Object entity) {

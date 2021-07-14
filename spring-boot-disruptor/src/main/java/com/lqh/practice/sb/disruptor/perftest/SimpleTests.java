@@ -5,6 +5,10 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.SequenceBarrier;
 import com.lmax.disruptor.Sequencer;
 import com.lmax.disruptor.YieldingWaitStrategy;
+import com.lqh.practice.sb.disruptor.gettingstart.LongEvent;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.util.StopWatch;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -17,20 +21,38 @@ import java.util.concurrent.LinkedBlockingQueue;
  * @date 2021/06/06 12:06
  * @since 2021/06/06 12:06
  */
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@DisplayName(SimpleTests.NAME)
+@Slf4j
 public class SimpleTests {
-    //待生产的对象个数
-    final long objCount = 1000000;
+    public static final String NAME = "RingBuffer与BlockingQueue 性能简单测试";
+    // 待生产的对象个数
+    final long eventCount = 1000000;
+    // 统计
+    static StopWatch stopWatch;
 
+    @BeforeAll
+    public static void ready() {
+        stopWatch = new StopWatch(SimpleTests.NAME);
+    }
+
+    @AfterAll
+    public static void stop() {
+        log.info(stopWatch.prettyPrint());
+    }
+
+    @Test
+    @Order(1)
+    @DisplayName("BlockingQueue测试")
     public void testBlockingQueue() throws Exception {
-        final LinkedBlockingQueue<TestObj> queue = new LinkedBlockingQueue<>();
+        final LinkedBlockingQueue<LongEvent> queue = new LinkedBlockingQueue<>();
 
         //生产者
         Thread producer = new Thread(() -> {
-
             try {
-                for (long i = 1; i <= objCount; i++) {
+                for (long i = 1; i <= eventCount; i++) {
                     //生产
-                    queue.put(new TestObj(i));
+                    queue.put(new LongEvent(i));
                 }
             } catch (InterruptedException e) {
             }
@@ -39,94 +61,81 @@ public class SimpleTests {
         //消费者
         Thread consumer = new Thread(() -> {
             try {
-                TestObj readObj = null;
-                for (long i = 1; i <= objCount; i++) {
+                LongEvent event = null;
+                for (long i = 1; i <= eventCount; i++) {
                     //消费
-                    readObj = queue.take();
+                    event = queue.take();
                     //DoSomethingAbout(readObj);
                 }
             } catch (InterruptedException e) {
             }
         });
 
-        StopWatch stopWatch = new StopWatch("testBlockingQueue");
-        stopWatch.start("main");
-
+        stopWatch.start("BlockingQueue");
         producer.start();
         consumer.start();
+
         consumer.join();
         producer.join();
 
         stopWatch.stop();
-        System.out.println(stopWatch.prettyPrint());
     }
 
-
     //使用RingBuffer测试
+    @Test
+    @Order(2)
+    @DisplayName("RingBuffer测试")
     public void testRingBuffer() throws Exception {
-        //创建一个单生产者的RingBuffer，EventFactory是填充缓冲区的对象工厂
-        //            YieldingWaitStrategy等"等待策略"指出消费者等待数据变得可用前的策略
-        final RingBuffer<TestObj> ringBuffer = RingBuffer.createSingleProducer(TestObj::new, 1024, new YieldingWaitStrategy());
-        //创建消费者指针
+        //创建一个单生产者的RingBuffer
+        final RingBuffer<LongEvent> ringBuffer = RingBuffer.createSingleProducer(LongEvent::new, 1024, new YieldingWaitStrategy());
+        //创建消费者 barrier
         final SequenceBarrier barrier = ringBuffer.newBarrier();
-
 
         //生产者
         Thread producer = new Thread(() -> {
-            for (long i = 1; i <= objCount; i++) {
-                ringBuffer.publishEvent((e, s, v) -> e.setValue(v), i);
+            for (long i = 1; i <= eventCount; i++) {
+                // EventTranslatorOneArg
+                ringBuffer.publishEvent((e, s, v) -> e.set(v), i);
             }
         });
 
         Thread consumer = new Thread(() -> {
-            TestObj readObj = null;
-            int readCount = 0;
+            LongEvent event = null;
+
+            // readIndex 初始值为 -1
+            long readCount = 0;
             long readIndex = Sequencer.INITIAL_CURSOR_VALUE;
 
-            //读取objCount个元素后结束
-            while (readCount < objCount) {
+            // 读 [0, objCount)
+            for(; readCount < eventCount;) {
                 try {
-                    //当前读取到的指针+1，即下一个该读的位置
+                    // 从0开始读
                     long nextIndex = readIndex + 1;
 
-                    //等待直到上面的位置可读取
+                    // 请求 读nextIndex
                     long availableIndex = barrier.waitFor(nextIndex);
 
-                    //从下一个可读位置到目前能读到的位置(Batch!)
-                    while (nextIndex <= availableIndex) {
+                    // [nextIndex, availableIndex] 可读取
+                    for (; nextIndex <= availableIndex; nextIndex++, readCount++) {
                         //获得Buffer中的对象
-                        readObj = ringBuffer.get(nextIndex);
+                        event = ringBuffer.get(nextIndex);
                         //DoSomethingAbout(readObj);
-                        readCount++;
-                        nextIndex++;
                     }
-                    readIndex = availableIndex;//刷新当前读取到的位置
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+
+                    readIndex = availableIndex;
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
+
+            log.info("readCount:{}, readIndex:{}" , readCount, readIndex);
         });
 
-        StopWatch stopWatch = new StopWatch("testRingBuffer");
-        stopWatch.start();
-
+        stopWatch.start("RingBuffer");
         producer.start();
         consumer.start();
         consumer.join();
         producer.join();
-
         stopWatch.stop();
-        System.out.println(stopWatch.prettyPrint());
-
-    }
-
-    /**
-     * main
-     */
-    public static void main(String[] args) throws Exception {
-
-        new SimpleTests().testBlockingQueue();
-
-        new SimpleTests().testRingBuffer();
     }
 }

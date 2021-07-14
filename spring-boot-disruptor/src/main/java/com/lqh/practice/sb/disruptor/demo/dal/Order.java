@@ -1,4 +1,4 @@
-package com.lqh.practice.sb.disruptor.demo.dal.entity;
+package com.lqh.practice.sb.disruptor.demo.dal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
