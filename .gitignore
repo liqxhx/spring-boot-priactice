@@ -34,3 +34,6 @@ hs_err_pid*
 .vscode/
 
 *.iml
+*.txt
+*.trc
+*.phd
